@@ -56,6 +56,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 _passwordField,
                 const SizedBox(height: 24),
                 _loginButton,
+                const SizedBox(height: 16),
+                _guestLoginButton,
                 const SizedBox(height: 24),
                 SocialLoginButtons(),
                 const SizedBox(height: 16), // <-- Moved here
@@ -181,6 +183,34 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+  Widget get _guestLoginButton {
+  return SizedBox(
+    width: double.infinity,
+    height: 44,
+    child: OutlinedButton(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: Colors.red,
+        side: const BorderSide(color: Colors.red),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+      onPressed: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MainScreen(email: "guest@kas.com"),
+          ),
+        );
+      },
+      child: const Text(
+        "Continue as Guest",
+        style: TextStyle(fontSize: 15),
+      ),
+    ),
+  );
+}
 }
 
 class SocialLoginButtons extends StatelessWidget {
